@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
 	attr_accessor :password
+	attr_accessible :username, :email, :password
 
 	has_one :api_key, dependent: :destroy
 
