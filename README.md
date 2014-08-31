@@ -44,4 +44,4 @@ ActiveRecord::RecordInvalid: Validation failed: Password can't be blank, Email c
 
 ## Question
 
-Why won't this 
+Why won't `User.create!(username:"u", password:"p", email:"e")` work?
