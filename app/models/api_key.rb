@@ -1,5 +1,5 @@
 class ApiKey < ActiveRecord::Base
-	attr_accessible :user, :token
+	#attr_accessible :user, :token
 
   belongs_to :user
   belongs_to :role
