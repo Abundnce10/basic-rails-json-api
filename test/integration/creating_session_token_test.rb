@@ -21,7 +21,7 @@ class CreatingSessionTokenTest < ActionDispatch::IntegrationTest
   	assert_equal Mime::JSON, response.content_type
 
   	assert_not_nil(session[:session_token])
-  	#assert_not_nil(session[:session_token_expiration])
+  	assert_not_nil(session[:session_token_expiration])
   	assert_not_nil(session[:user_id])
     assert_not_nil(session[:user_profile_url])
   end

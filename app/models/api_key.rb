@@ -1,10 +1,10 @@
 class ApiKey < ActiveRecord::Base
-	#attr_accessible :user, :token
 
   belongs_to :user
   belongs_to :role
 
   before_create :generate_token
+  before_save :generate_expiration
 
   private
 
@@ -12,6 +12,10 @@ class ApiKey < ActiveRecord::Base
     begin
       self.token = SecureRandom.hex.to_s
     end while self.class.exists?(token: token)
+  end
+
+  def generate_expiration
+    self.expires_at = Time.now + 30.days
   end
   
 end
