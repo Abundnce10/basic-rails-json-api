@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   private
 
   def restrict_access
-    unless restrict_access_by_params || restrict_access_by_header
+    unless (restrict_access_by_params || restrict_access_by_header) && restrict_expired_token
       render json: {message: 'Invalid API Token'}, status: 401
       return
     end
@@ -26,6 +26,10 @@ class ApplicationController < ActionController::API
     return true if @api_key
 
     @api_key = ApiKey.find_by_token(params[:token])
+  end
+
+  def restrict_expired_token
+    @api_key.expires_at >= Time.now
   end
 
 end
